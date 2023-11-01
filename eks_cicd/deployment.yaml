@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: dashboard
+    app.kubernetes.io/instance: cicd-demo-instance
+    app.kubernetes.io/version: '1.0.0'
+    app.kubernetes.io/managed-by: kubectl
+  name: dashboard-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashboard-deployment
+  template:
+    metadata:
+      labels:
+        app: dashboard-deployment
+    spec:
+      containers:
+        - image: XXXXXX.dkr.ecr.eu-west-1.amazonaws.com/liam-dashboard:v6 
+          imagePullPolicy: Always
+          name: viernes-laravel
+          ports:
+            - containerPort: 3000
